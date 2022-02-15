@@ -21,6 +21,8 @@ alias hg='history | grep'
 alias heg='history | grep -E'
 alias tl='tail'
 alias hd='head'
+function zhead(){ zcat "$1" | head; }
+function ztail(){ zcat "$1" | tail; }
 function ev() { "$@" | grep -Ev ':0$'; }
 # Moving Stuff
 alias ..='cd ..'
@@ -44,8 +46,15 @@ alias limit='linelimit'
 function readini() { awk '/'"$2"'/,!NF' $1 | awk -F"=" '/'"$3"'/ {print $2}'; }
 function readini2() { awk -v section="$2" '$0~section,!NF' "$1" | awk -v entry="$3" -F"=" '$0~entry {print $2}'; }
 
+
+# Distro Release/Version Information
+alias release='cat /etc/*release';
+alias version='cat /etc/*version';
+alias os='cat /etc/*version /etc/*release';
+alias osver='cat /etc/*version';
+
 # PROMPT STUFF
-PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+# PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\n\$ '
 
 
 
